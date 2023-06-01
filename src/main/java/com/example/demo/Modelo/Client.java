@@ -17,10 +17,12 @@ public class Client {
     private String name;
     private Integer age;
 
+    // Messages
    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
     public List<Messages>messages;
 
+   //reservas
    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
     public List<Reservation>reservations;

@@ -26,4 +26,8 @@ public class GamaRepositorio {
     public Gama save (Gama gama) {
         return gamaCrudRepository.save(gama);
     }
+
+    public void delete(Gama gama) {
+        gamaCrudRepository.delete(gama);
+    }
 }

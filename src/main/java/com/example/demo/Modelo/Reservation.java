@@ -17,17 +17,25 @@ public class Reservation {
     private Date devolutionDate;
     private String status= "created";
 
+    // car
     @ManyToOne
     @JoinColumn(name = "idCar")
-    @JsonIgnoreProperties({"reservations"})
+    @JsonIgnoreProperties("reservations")
     private Car car;
 
+    // Clients
     @ManyToOne
     @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
 
-    private String score;
+    // Score
+    @OneToOne
+    @JsonIgnoreProperties("reservation")
+    private Score score;
+
+    // private String score;
+
 
     public Integer getIdReservation() {
         return idReservation;
@@ -77,11 +85,11 @@ public class Reservation {
         this.client = client;
     }
 
-    public String getScore() {
+    public Score getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Score score) {
         this.score = score;
     }
 }

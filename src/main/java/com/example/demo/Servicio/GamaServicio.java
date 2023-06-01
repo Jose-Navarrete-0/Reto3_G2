@@ -1,11 +1,12 @@
 package com.example.demo.Servicio;
 
 import com.example.demo.Modelo.Gama;
+import com.example.demo.Modelo.Client;
 import com.example.demo.Repositorio.GamaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +19,8 @@ public class GamaServicio {
         return gamaRepository.getAll();
     }
 
-    public Optional<Gama> getGama(int idGama) {
-        return gamaRepository.getGama(idGama);
+    public Optional<Gama> getGama(int id) {
+        return gamaRepository.getGama(id);
     }
 
     public Gama save(Gama gama) {
@@ -33,5 +34,33 @@ public class GamaServicio {
                 return gama;
             }
         }
+    }
+
+    public Gama update(Gama gama) {
+        if (gama.getIdGama() != null) {
+            Optional<Gama> gamaEncontrado = getGama(gama.getIdGama());
+            if (gamaEncontrado.isPresent()){
+                if (gama.getName() != null) {
+                    gamaEncontrado.get().setName(gama.getName());
+                }
+                if (gama.getDescription() != null) {
+                    gamaEncontrado.get().setDescription(gama.getDescription());
+                }
+                
+                return gamaRepository.save(gamaEncontrado.get());
+            }
+        } else {
+            return gama;
+        }
+        return gama;
+    }
+
+    public boolean delete(int id) {
+        Boolean respuesta = getGama(id).map(gama -> {
+            gamaRepository.delete(gama);
+            return true;
+        }).orElse(false);
+
+        return respuesta;
     }
 }

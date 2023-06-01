@@ -16,15 +16,19 @@ public class Car {
     private Integer year;
     private String description;
 
+
+    // Gama
    @ManyToOne
    @JoinColumn(name = "idGama")
    @JsonIgnoreProperties("cars")
    private Gama gama;
 
+   // Message
    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
    @JsonIgnoreProperties( {"car", "client"})
    private List<Messages> messages;
 
+   // Reservas
    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
    @JsonIgnoreProperties({"car", "messages"})
    public List<Reservation> reservations;
