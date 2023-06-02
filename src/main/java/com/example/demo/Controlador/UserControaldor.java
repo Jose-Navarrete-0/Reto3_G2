@@ -13,6 +13,7 @@ public class UserControaldor {
     @GetMapping("/user")
     public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
         System.out.println("Datos del usuario\n"+principal.getAttributes());
-        return Collections.singletonMap("name", principal.getAttribute("name"));
+        return null;
+        //return Collections.singletonMap("name", principal.getAttribute("name"));
     }
 }

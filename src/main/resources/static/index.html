@@ -11,18 +11,17 @@
     <h1>Bienvenidos a Carros</h1>
 
     <div class="container unauthenticated">
-        Para iniciar sesión haz click <a href="/oauth2/oathorization/github">aquí</a>
+        Para iniciar sesión haz click <a href="/oauth2/authorization/github">aquí</a>
     </div>
 
     <div class="container unauthenticated" style="display: none">
         Has sido autenticado: <span id="usuario"></span>
         <button onclick="location.href='homePage.html';">Continuar</button>
     </div>
-
 </body>
 <script type="text/javascript">
-    $.get("/user", function (data){
-    $("#Usuario").html(data.name);
+   $.get("/user", function (data){
+    $("#usuario").html(data.name);
     $(".unauthenticated").hide();
     $(".authenticated").show();
     });
